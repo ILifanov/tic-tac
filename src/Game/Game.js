@@ -14,12 +14,12 @@ export default function Game() {
       setCurrentMove(nextHistory.length - 1);
       setXIsNext(!xIsNext);
       }
-      function jumpTo(nextMove, history) {
+      function jumpTo(nextMove) {
         setCurrentMove(nextMove);
         setXIsNext(nextMove % 2 === 0);
         }
       
-      const moves = history.map((square, move) => {
+      const moves = history.slice(0, currentMove).map((square, move) => {
         let description;
         if (move > 0) {
           description = 'Go to move #' + move;
