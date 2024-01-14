@@ -34,12 +34,19 @@ export default function Game() {
       })
       return (
         <div className="game">
+          <table>
+            <tr>
+          <h1>Привет родные :)</h1>
+          </tr>
+          <tr>
           <div className="game-board">
             <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
             </div>
             <div>
             <ol>{moves}</ol>
             </div>
+            </tr>
+            </table>
         </div>
     )
 }
