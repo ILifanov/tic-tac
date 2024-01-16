@@ -1,8 +1,9 @@
 import Board from "./Board"
 import React from 'react';
 import {useState} from 'react';
+import aiMove from './ai'
 
-export default function Game() {
+export default function Game({mode}) {
     const [xIsNext, setXIsNext] = useState(true);
     const [history, setHistory] = useState([Array(9).fill(null)]);
     const [currentMove, setCurrentMove] = useState(0);
@@ -13,7 +14,16 @@ export default function Game() {
       setHistory(nextHistory);
       setCurrentMove(nextHistory.length - 1);
       setXIsNext(!xIsNext);
+      //Ai move
+      console.log('squares: '+ nextSquares)
+      console.log('winner:' + calculateWinner(nextSquares))
+      if (!calculateWinner(nextSquares) && (mode === 'singleFun') || (mode === 'singleDie'))
+      { nextSquares[aiMove(nextSquares)] = "O"; 
+        setHistory([...nextHistory.slice(), nextSquares])
+        setCurrentMove(nextHistory.length - 1);
+        setXIsNext(true)
       }
+    }
       function jumpTo(nextMove) {
         setCurrentMove(nextMove);
         setXIsNext(nextMove % 2 === 0);
@@ -35,12 +45,9 @@ export default function Game() {
       return (
         <div className="game">
           <table>
-            <tr>
-          <h1>Привет родные :)</h1>
-          </tr>
           <tr>
           <div className="game-board">
-            <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+            <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} mode = {mode} setX = {setXIsNext} calculateWinner= {calculateWinner} />
             </div>
             <div>
             <ol>{moves}</ol>
@@ -49,4 +56,24 @@ export default function Game() {
             </table>
         </div>
     )
+}
+
+function calculateWinner(squares) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return lines[i];
+    }
+  }
+  return null;
 }

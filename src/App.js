@@ -1,11 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
-import Game from './Game/Game'
+import Menu from './Game/Menu';
+import Game from './Game/Game';
+import {useState} from 'react'
 
 function App() {
+  console.log('test')
+  const [gameMode, setGameMode] = useState(null);
   return (
     <>
-    <Game />
+    {!gameMode &&  <Menu setGameMode = {setGameMode} />}
+     {gameMode && < Game mode = {gameMode}/>}
     </>
   )
 }
