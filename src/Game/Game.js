@@ -15,10 +15,8 @@ export default function Game({mode}) {
       setCurrentMove(nextHistory.length - 1);
       setXIsNext(!xIsNext);
       //Ai move
-      console.log('squares: '+ nextSquares)
-      console.log('winner:' + calculateWinner(nextSquares))
       if (!calculateWinner(nextSquares) && (mode === 'singleFun') || (mode === 'singleDie'))
-      { nextSquares[aiMove(nextSquares)] = "O"; 
+      { nextSquares[aiMove(nextSquares, nextHistory.length - 1, mode)] = "O"; 
         setHistory([...nextHistory.slice(), nextSquares])
         setCurrentMove(nextHistory.length - 1);
         setXIsNext(true)
@@ -27,6 +25,8 @@ export default function Game({mode}) {
       function jumpTo(nextMove) {
         setCurrentMove(nextMove);
         setXIsNext(nextMove % 2 === 0);
+        if ((mode === 'singleFun') || (mode === 'singleDie')) setXIsNext(true)
+        console.log(mode)
         }
       
       const moves = history.slice(0, currentMove).map((square, move) => {
