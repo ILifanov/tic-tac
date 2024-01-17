@@ -37,23 +37,20 @@ export default function Game({mode}) {
           description = "Go to game start";
         }
         return (
-          <li key={move}>
-            <button onClick={() => jumpTo(move)}>{description}</button>
+          <li key={move} >
+            <button className="historyBtn" onClick={() => jumpTo(move)} >{description}</button>
           </li>
         )
       })
       return (
         <div className="game">
-          <table>
-          <tr>
           <div className="game-board">
             <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} mode = {mode} setX = {setXIsNext} calculateWinner= {calculateWinner} />
             </div>
-            <div>
-            <ol>{moves}</ol>
+            <div className="moveList">
+            <p> <i>Moves history: click to return</i></p>
+            <ol >{moves}</ol>
             </div>
-            </tr>
-            </table>
         </div>
     )
 }

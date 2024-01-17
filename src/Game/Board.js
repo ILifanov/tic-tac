@@ -25,12 +25,16 @@ if (winnerLine)
  winnerLine.forEach((square) => squareColors[square] = 'grey')};
 
     let status;
-    if (winner) {status = "Winner: " + winner;} 
+    if (winner) {status = "Winner: " + winner + "       ";} 
     else {{status = "Next player: " + (xIsNext?"X":"O")}}
+    if (squares.find((square) => {return (square === null)}) === undefined) {status = 'Draw'}
   return (
-    <>
-    <h1>{status}</h1>
-    <table>
+    <div className='gameHeader'>
+      <div>
+    <h1> <i>{status}</i></h1>
+      </div>
+      <div>
+    <table className='gameBoard'>
     <tr>
     <Square value={squares[0]} squareColor={squareColors[0]} onSquareClick={() => handleClick(0)}/>
     <Square value={squares[1]} squareColor={squareColors[1]} onSquareClick={() => handleClick(1)}/>
@@ -47,7 +51,8 @@ if (winnerLine)
     <Square value={squares[8]} squareColor={squareColors[8]} onSquareClick={() => handleClick(8)}/>
     </tr>
     </table>
-    </>
+    </div>
+    </div>
   )
 }
 

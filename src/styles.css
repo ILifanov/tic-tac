@@ -1,7 +1,16 @@
 * {
     box-sizing: border-box;
+    text-align:center;
+    text-justify:auto;
   }
   
+  br:after {
+    content: '\00a0';
+    display: block;
+    height: 1px; 
+    color: black;
+  }
+
   body {
     font-family: sans-serif;
     margin: 20px;
@@ -71,6 +80,11 @@
     width: 34px;
   }
   
+  .square:hover {
+    border-color:#3d0a66; /* Darker border color on hover */
+    border-width: 3px;
+  }
+
   .board-row:after {
     clear: both;
     content: '';
@@ -82,10 +96,85 @@
   }
   .game {
     display: flex;
+    gap: 20px;
+    align-items: right;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:space-around;
   }
   
   .game-info {
     margin-left: 20px;
   }
-  
+.menuButton {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid #540e8d; /* Border color */
+  color: rgb(0, 0, 0)000; /* Text color */
+  background-color: #7f58fc; /* Background color */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  margin: 5px;
+}
+
+.menuButton:hover {
+  background-color:#3d0a66;; /* Darker background color on hover */
+  border-color:#3d0a66; /* Darker border color on hover */
+  color: #fff; /* Text color on hover */
+}
+
+.movesList{
+  text-align:right;
+}
+
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+  background-color: #ccc;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+.rules{
+  font-size: small;
+  text-align: justify;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  margin-bottom:10px;
+  padding-bottom:10px;
+}
+.rulesText{
+  text-align: justify;
+  margin-bottom:10px;
+  padding-bottom:10px;
+}
+
+
+.historyBtn {
+  padding: 5px 20px;
+  border: 2px solid #540e8d; /* Border color */
+  color: rgb(0, 0, 0)000; /* Text color */
+  background-color: #7f58fc; /* Background color */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  margin: 2px;
+}
+
+.historyBtn:hover {
+  background-color:#3d0a66;; /* Darker background color on hover */
+  border-color:#3d0a66; /* Darker border color on hover */
+  color: #fff; /* Text color on hover */
+}
